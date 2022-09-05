@@ -41,7 +41,7 @@ public class MagicParser {
         return readBytes;
     }
 
-    public boolean parseBytesAsGIF(File inputFile) throws IOException {
+    public boolean parseBytesAsGIF89a(File inputFile) throws IOException {
         byte[] inputBytes = loadFile(inputFile);
         return Arrays.equals( Arrays.copyOf(inputBytes, GIF.length), GIF );
     }

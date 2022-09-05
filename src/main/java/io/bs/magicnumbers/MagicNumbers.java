@@ -8,7 +8,7 @@ public class MagicNumbers {
     public static void main(String[] args) {
         MagicParser magicParser = new MagicParser();
         try {
-            boolean isgif = magicParser.parseBytesAsGIF(new File("/home/pawlacz/image.gif"));
+            boolean isgif = magicParser.parseBytesAsGIF89a(new File("/home/pawlacz/image.gif"));
             System.out.format("%b", isgif);
         } catch (IOException e) {
             System.out.println(e.getMessage());
