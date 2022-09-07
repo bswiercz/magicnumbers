@@ -12,6 +12,7 @@ public class MagicNumbersTest {
     private final MagicParser magicParser = new MagicParser();
 
     @Test
+    @DisplayName("Simple GIF89a match")
     void simpleMatchGIF89a() throws IOException, URISyntaxException {
         URL imageGif = getClass().getClassLoader().getResource("imageGIF89a.gif");
         Assertions.assertEquals( true, magicParser.parseBytesAsGIF89a(new File(imageGif.toURI())) );
