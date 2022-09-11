@@ -1,9 +1,7 @@
 package io.bs.libmagicnum;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public enum FileType {
     GIF("image/gif", "gif"),
@@ -19,9 +17,16 @@ public enum FileType {
         extensions = Arrays.asList(extension);
     }
 
-    public static FileType findByMimeType(String mimeType) {
+    public static FileType fromMimeType(String mimeType) {
         return Arrays.stream(FileType.values())
                 .filter( fileType -> mimeType.equals(fileType.mimeType) )
+                .findAny()
+                .orElse(FileType.UNKNOWN);
+    }
+    public static FileType fromExtension(String path) {
+        String ext = path.substring(path.lastIndexOf('.')+1);
+        return Arrays.stream(FileType.values())
+                .filter( fileType -> fileType.extensions.contains(ext) )
                 .findAny()
                 .orElse(FileType.UNKNOWN);
     }

@@ -20,7 +20,24 @@ public class FileDifferentiator {
                     System.out.println(e.getMessage());
                     continue;
                 }
-                FileType typeByBytes = magicTypes.findTypeByBytes(loadedFileBytes);
+                FileType foundType = magicTypes.findTypeByBytes(loadedFileBytes);
+                FileType fromExtension = FileType.fromExtension(path);
+
+                if( fromExtension == FileType.UNKNOWN && foundType == FileType.UNKNOWN ) {
+                    System.out.println("Not able to verify this file, file type unknown");
+                }
+                else if(fromExtension == FileType.UNKNOWN) {
+                    System.out.format("Not able to verify this file, but file type is %s", foundType.mimeType);
+                }
+                else {
+                    if( fromExtension == foundType ) {
+                        System.out.format("File is %s and is consistent with its extension", foundType.mimeType);
+                    }
+                    else {
+                        System.out.format("File is NOT VALID %s file, but is %s by magic number", FileType.fromExtension(path).mimeType, foundType.mimeType);
+                    }
+                }
+
 
             }
         }

@@ -18,7 +18,7 @@ class MagicType {
     public FileType findTypeByBytes(byte[] inputBytes) {
         boolean result = magicNumberComparator.compareBytes(inputBytes, magicNumberBytes, offset);
         if(result) {
-            return FileType.findByMimeType(mimeType);
+            return FileType.fromMimeType(mimeType);
         }
         else {
             return FileType.UNKNOWN;
