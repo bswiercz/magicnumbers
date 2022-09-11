@@ -2,7 +2,7 @@ package io.bs.libmagicnum;
 
 import io.bs.libmagicnum.comparators.MagicNumberComparator;
 
-public class MagicType {
+class MagicType {
     private final String name;
     private final byte[] magicNumberBytes;
     private final Integer offset;
@@ -15,5 +15,15 @@ public class MagicType {
         this.offset = offset;
         this.mimeType = mimeType;
         this.magicNumberComparator = magicNumberComparator;
+    }
+
+    public FileType findTypeByBytes(byte[] inputBytes) {
+        if( magicNumberComparator.compareBytes(inputBytes, magicNumberBytes, offset) ) {
+            return FileType.findByMimeType(mimeType);
+        }
+    }
+
+    public String getMimeType() {
+        return mimeType;
     }
 }

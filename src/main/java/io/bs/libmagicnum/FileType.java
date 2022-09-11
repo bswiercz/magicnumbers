@@ -3,11 +3,13 @@ package io.bs.libmagicnum;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 enum FileType {
-    GIF("image/gif", "gif", "giff"),
-    JPG("image/jpg", "jpg", "jpeg", "jp2"),
-    BMP("image/bitmap", "bmp");
+    GIF("image/gif", "gif"),
+    JPG("image/jpg", "jpg", "jpeg", "jpe", "jif", "jfif", "jfi"),
+    TXT("text/plain", "txt"),
+    UNKNOWN("other");
 
     public final String mimeType;
     public final List<String> extensions;
@@ -15,5 +17,12 @@ enum FileType {
     FileType(String mimeType, String... extension) {
         this.mimeType = mimeType;
         extensions = Arrays.asList(extension);
+    }
+
+    public static FileType findByMimeType(String mimeType) {
+        return Arrays.stream(FileType.values())
+                .filter( fileType -> mimeType.equals(fileType.mimeType) )
+                .findAny()
+                .orElse(FileType.UNKNOWN);
     }
 }
