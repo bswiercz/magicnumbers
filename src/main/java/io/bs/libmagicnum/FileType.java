@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-enum FileType {
+public enum FileType {
     GIF("image/gif", "gif"),
-    JPG("image/jpg", "jpg", "jpeg", "jpe", "jif", "jfif", "jfi"),
+    JPG("image/jpeg", "jpg", "jpeg", "jpe", "jif", "jfif", "jfi"),
     TXT("text/plain", "txt"),
     UNKNOWN("other");
 

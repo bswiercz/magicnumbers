@@ -9,7 +9,7 @@ public class FileLoader {
 
     public static int BYTES_TO_READ = 32;
 
-    public FileType loadFileAndAnalyze(File inputFile) throws IOException {
+    public static byte[] loadFile(File inputFile) throws IOException {
         if (!inputFile.exists()) {
             throw new IOException("Specified file does not exist");
         }
@@ -36,6 +36,6 @@ public class FileLoader {
         if(readLength < readBytes.length) {
             readBytes = Arrays.copyOf(readBytes, readLength);
         }
-        return MagicTypes;
+        return readBytes;
     }
 }
